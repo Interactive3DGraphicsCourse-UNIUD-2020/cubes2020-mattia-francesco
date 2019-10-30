@@ -3,7 +3,6 @@ import * as THREE from './build/three.module.js';
 import * as Utils from './utils.js';
 
 import * as Ground from './Ground.js';
-import * as Ocean from './Ocean.js';
 
 class World
 {
