@@ -3,6 +3,10 @@ import * as THREE from './build/three.module.js';
 import * as Utils from './utils.js';
 
 import * as Ground from './Ground.js';
+import {Ocean} from './Ocean.js';
+
+
+var ANIMATION_DURATION = 1000;		//in milliseconds
 
 class World
 {
@@ -21,6 +25,13 @@ class World
 		//Setup ground
 		var pivotGround = Ground.createGround(5,5);
 		this.scene.add( pivotGround );
+
+		//Setup ocean
+		this.ocean = new Ocean(20, 20);
+		this.scene.add(this.ocean);
+
+		//Animations
+		this.startTime = Date.now();
 	}
 
 	initLights()
@@ -47,7 +58,10 @@ class World
 
 	update()
 	{
+		var currentSecond = (Date.now()-this.startTime)%ANIMATION_DURATION;
+		var amount = currentSecond/ANIMATION_DURATION;
 
+		this.ocean.update(amount);
 	}
 }
 
