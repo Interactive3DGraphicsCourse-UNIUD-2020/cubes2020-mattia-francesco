@@ -46,7 +46,7 @@ class Cube extends Group
 		//wireframeMesh.renderOrder = 1;
 
 		this.add(fillMesh);
-		//this.add(wireframeMesh);
+		this.add(wireframeMesh);
 
 
 		this.material = material;

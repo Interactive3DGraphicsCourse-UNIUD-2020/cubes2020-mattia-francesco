@@ -5,6 +5,9 @@ import * as Utils from './utils.js';
 import * as Ground from './Ground.js';
 import {Ocean} from './Ocean.js';
 
+import {Sphere, Tree} from './Sphere.js';
+
+
 
 var ANIMATION_DURATION = 1000;		//in milliseconds
 
@@ -22,13 +25,23 @@ class World
 		//Setup lights
 		this.initLights();
 
+		var length = 20;
+		var depth = 20;
+
 		//Setup ground
-		var pivotGround = Ground.createGround(5,5);
+		var pivotGround = Ground.createGround(length,depth);
 		this.scene.add( pivotGround );
 
 		//Setup ocean
-		this.ocean = new Ocean(20, 20);
+		this.ocean = new Ocean(length, depth);
 		this.scene.add(this.ocean);
+
+		this.ocean.position.z = length;
+
+		this.tree = new Tree(5,5);
+		this.scene.add(this.tree);
+		this.tree.position.z = length/2;
+		this.tree.position.x = length/2;
 
 		//Animations
 		this.startTime = Date.now();
