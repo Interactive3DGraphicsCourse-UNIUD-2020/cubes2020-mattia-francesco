@@ -5,6 +5,8 @@ import * as Utils from './utils.js';
 import * as Ground from './Ground.js';
 import {Ocean} from './Ocean.js';
 
+import * as Model from './Model.js';
+
 
 var ANIMATION_DURATION = 1000;		//in milliseconds
 
@@ -29,6 +31,11 @@ class World
 		//Setup ocean
 		this.ocean = new Ocean(20, 20);
 		this.scene.add(this.ocean);
+
+		//Creeper
+		var model = Model.load("Zomb.FBX", (creeper) => {
+			this.scene.add(creeper);
+		}, (error) => { alert(error); });
 
 		//Animations
 		this.startTime = Date.now();
