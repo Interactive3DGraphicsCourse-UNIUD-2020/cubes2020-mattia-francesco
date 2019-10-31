@@ -22,13 +22,18 @@ class World
 		//Setup lights
 		this.initLights();
 
+		var length = 20;
+		var depth = 20;
+
 		//Setup ground
-		var pivotGround = Ground.createGround(5,5);
+		var pivotGround = Ground.createGround(length,depth);
 		this.scene.add( pivotGround );
 
 		//Setup ocean
-		this.ocean = new Ocean(20, 20);
+		this.ocean = new Ocean(length, depth);
 		this.scene.add(this.ocean);
+
+		this.ocean.position.z = length;
 
 		//Animations
 		this.startTime = Date.now();
