@@ -7,7 +7,7 @@ import * as Ground from './Ground.js';
 var WAVE_LENGTH = 8;
 var WAVE_HEIGHT = 1/4;
 
-export class Spehere extends Group
+export class Sphere extends Group
 {
 	constructor(diameter)
 	{
@@ -15,17 +15,28 @@ export class Spehere extends Group
 
 		this.rows = [];
 
-        var globalPivot = Group();
-        var functionPivot = Group();
-        for (height=1;height<=diameter;height++) {
+        var functionPivot = new Group();
+        var heightPivot = 0;
+        var centerPivot = 0;
+        for (var height=1;height<=diameter;height+=2) {
             functionPivot = Ground.createCube(height,height,0x00ff00);
-            globalPivot.add(functionPivot);
-            functionPivot.position.y = height;
+            this.add(functionPivot);
+            functionPivot.position.y = heightPivot;
+            functionPivot.position.z = -centerPivot;
+            functionPivot.position.x = -centerPivot;
+            heightPivot++;
+            centerPivot++;
         }
-        for (height = diameter - 1; height <= 1; height++) {
+        centerPivot--;
+
+        for (var height = diameter - 2; height >= 1; height-=2) {
+            centerPivot--;
             functionPivot = Ground.createCube(height,height,0x00ff00);
-            globalPivot.add(functionPivot);
-            functionPivot.position.y = height;
+            this.add(functionPivot);
+            functionPivot.position.y = heightPivot;
+            functionPivot.position.z = -centerPivot;
+            functionPivot.position.x = -centerPivot;
+            heightPivot++;
         }
 	}
 }

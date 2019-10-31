@@ -5,6 +5,9 @@ import * as Utils from './utils.js';
 import * as Ground from './Ground.js';
 import {Ocean} from './Ocean.js';
 
+import {Sphere} from './Sphere.js';
+
+
 
 var ANIMATION_DURATION = 1000;		//in milliseconds
 
@@ -34,6 +37,14 @@ class World
 		this.scene.add(this.ocean);
 
 		this.ocean.position.z = length;
+
+		this.sphere = new Sphere(5);
+		this.scene.add(this.sphere);
+
+		this.sphere.position.z = length/2;
+		this.sphere.position.x = length/2;
+		this.sphere.position.y = 6;
+
 
 		//Animations
 		this.startTime = Date.now();
