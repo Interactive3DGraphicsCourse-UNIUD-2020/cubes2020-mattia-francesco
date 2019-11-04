@@ -40,13 +40,13 @@ class Cube extends Group
 		var material = new THREE.MeshPhongMaterial(materialParams);
 		var fillMesh = new THREE.Mesh(geometry, material);
 
-		var wireframeGeometry = new THREE.EdgesGeometry(geometry);
-		var wireframeMaterial = new THREE.LineBasicMaterial({color: 0x999999, linewidth: 4});
-		var wireframeMesh = new THREE.LineSegments(wireframeGeometry, wireframeMaterial);
+		// var wireframeGeometry = new THREE.EdgesGeometry(geometry);
+		// var wireframeMaterial = new THREE.LineBasicMaterial({color: 0x999999, linewidth: 4});
+		// var wireframeMesh = new THREE.LineSegments(wireframeGeometry, wireframeMaterial);
 		//wireframeMesh.renderOrder = 1;
 
 		this.add(fillMesh);
-		this.add(wireframeMesh);
+		// this.add(wireframeMesh);
 
 
 		this.material = material;
@@ -64,4 +64,15 @@ class OceanCube extends Cube
 	}
 }
 
-export {Cube, OceanCube};
+class PlanetCube extends Cube
+{
+	constructor()
+	{
+		super(0x0000FF);
+
+		this.material.transparent = true;
+		this.material.opacity = 0.1;
+	}
+}
+
+export {Cube, OceanCube, PlanetCube};

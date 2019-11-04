@@ -7,6 +7,7 @@ import {Ocean} from './Ocean.js';
 
 import {Tree} from './Tree.js';
 import {Planet} from './Planet.js';
+import { Group } from './Group.js';
 
 
 
@@ -29,24 +30,32 @@ class World
 		var length = 20;
 		var depth = 20;
 
+
+		this.sun = new Planet(30,30,30,);
+		this.scene.add(this.sun);
+
 		//Setup ground
 		var pivotGround = Ground.createGround(length,depth);
-		this.scene.add( pivotGround );
 
 		//Setup ocean
 		this.ocean = new Ocean(length, depth);
-		this.scene.add(this.ocean);
 
 		this.ocean.position.z = length;
 
 		//Setup tree
 		this.tree = new Tree(5,5);
-		this.scene.add(this.tree);
 		this.tree.position.z = length/2;
 		this.tree.position.x = length/2;
 
-		this.planet = new Planet(20,20,20,0x0000ff);
-		this.scene.add(this.planet);
+		pivotPlanet = new Group();
+		this.planet = new Planet(40,20,20);
+		this.planet.position.x = 80;
+		this.scene.add(pivotPlanet);
+		this.planet.add(this.tree);
+		this.planet.add(this.ocean);
+		this.planet.add( pivotGround );
+
+
 
 		//Setup earth
 		//Animations
@@ -81,6 +90,7 @@ class World
 		var amount = currentSecond/ANIMATION_DURATION;
 
 		this.ocean.update(amount);
+		this.pivotPlanet.rotation.y += 0.02;
 	}
 }
 
