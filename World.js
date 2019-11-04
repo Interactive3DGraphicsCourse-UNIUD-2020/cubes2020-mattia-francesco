@@ -5,7 +5,8 @@ import * as Utils from './utils.js';
 import * as Ground from './Ground.js';
 import {Ocean} from './Ocean.js';
 
-import {Sphere, Tree} from './Sphere.js';
+import {Tree} from './Tree.js';
+import {Planet} from './Planet.js';
 
 
 
@@ -38,11 +39,16 @@ class World
 
 		this.ocean.position.z = length;
 
+		//Setup tree
 		this.tree = new Tree(5,5);
 		this.scene.add(this.tree);
 		this.tree.position.z = length/2;
 		this.tree.position.x = length/2;
 
+		this.planet = new Planet(20,20,20,0x0000ff);
+		this.scene.add(this.planet);
+
+		//Setup earth
 		//Animations
 		this.startTime = Date.now();
 	}
