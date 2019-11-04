@@ -4,6 +4,7 @@ import * as Utils from './utils.js';
 
 import * as Ground from './Ground.js';
 import {Ocean} from './Ocean.js';
+import {Creeper} from './Creeper.js';
 
 import {Sphere, Tree} from './Sphere.js';
 
@@ -42,6 +43,10 @@ class World
 		this.scene.add(this.tree);
 		this.tree.position.z = length/2;
 		this.tree.position.x = length/2;
+		
+		//Creeper
+		this.creeper = new Creeper();
+		this.scene.add(this.creeper);
 
 		//Animations
 		this.startTime = Date.now();
@@ -75,6 +80,7 @@ class World
 		var amount = currentSecond/ANIMATION_DURATION;
 
 		this.ocean.update(amount);
+		this.creeper.update(amount);
 	}
 }
 
