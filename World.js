@@ -10,7 +10,7 @@ import {Sphere, Tree} from './Sphere.js';
 
 
 
-var ANIMATION_DURATION = 1000;		//in milliseconds
+var ANIMATION_DURATION = 4000;		//in milliseconds
 
 class World
 {
@@ -47,6 +47,7 @@ class World
 		//Creeper
 		this.creeper = new Creeper();
 		this.scene.add(this.creeper);
+		this.creeper.position.set(length/2, 1, length/2);
 
 		//Animations
 		this.startTime = Date.now();

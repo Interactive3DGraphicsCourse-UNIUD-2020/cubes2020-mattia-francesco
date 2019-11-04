@@ -11,7 +11,7 @@ class Creeper extends Group
 		super();
 
 		var model = Model.load("minecraft_-_creeper/scene.gltf", 2, (creeper) => {
-			creeper.position.x = 2;
+			creeper.position.x = 4;
 			creeper.rotateZ(Math.PI);
 
 			super.add(creeper);
