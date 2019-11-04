@@ -4,8 +4,7 @@ import * as Utils from './utils.js';
 
 import * as Ground from './Ground.js';
 import {Ocean} from './Ocean.js';
-
-import * as Model from './Model.js';
+import {Creeper} from './Creeper.js';
 
 
 var ANIMATION_DURATION = 1000;		//in milliseconds
@@ -33,9 +32,8 @@ class World
 		this.scene.add(this.ocean);
 
 		//Creeper
-		var model = Model.load("Zomb.FBX", (creeper) => {
-			this.scene.add(creeper);
-		}, (error) => { alert(error); });
+		this.creeper = new Creeper();
+		this.scene.add(this.creeper);
 
 		//Animations
 		this.startTime = Date.now();
@@ -69,6 +67,7 @@ class World
 		var amount = currentSecond/ANIMATION_DURATION;
 
 		this.ocean.update(amount);
+		this.creeper.update(amount);
 	}
 }
 
