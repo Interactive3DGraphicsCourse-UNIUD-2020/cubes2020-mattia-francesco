@@ -1,7 +1,7 @@
 import * as THREE from './build/three.module.js';
 
 import {Group} from './Group.js';
-import {Cube} from './Cube.js';
+import {TrunkCube, LeavesCube} from './Cube.js';
 import * as Ground from './Ground.js';
 
 var WAVE_LENGTH = 8;
@@ -19,7 +19,7 @@ export class Sphere extends Group
         var heightPivot = 0;
         var centerPivot = 0;
         for (var height=1;height<=diameter;height+=2) {
-            functionPivot = Ground.createCube(height,height,color);
+            functionPivot = this.createCube(height,height,color);
             this.add(functionPivot);
             functionPivot.position.y = heightPivot;
             functionPivot.position.z = -centerPivot;
@@ -31,7 +31,7 @@ export class Sphere extends Group
 
         for (var height = diameter - 2; height >= 1; height-=2) {
             centerPivot--;
-            functionPivot = Ground.createCube(height,height,color);
+            functionPivot = this.createCube(height,height,color);
             this.add(functionPivot);
             functionPivot.position.y = heightPivot;
             functionPivot.position.z = -centerPivot;
@@ -39,6 +39,22 @@ export class Sphere extends Group
             heightPivot++;
         }
 	}
+
+    createCube(width,height)
+    {
+        var pivot = new THREE.Object3D()
+        for (var x = 0; x < width; x++) {
+            for (var z = 0; z < height; z++) {
+                var cube = new LeavesCube();
+                cube.castShadow = true;
+                cube.receiveShadow = true;
+                cube.position.x = x;
+                cube.position.z = z;
+                pivot.add(cube);
+            }
+        }
+        return pivot  
+    }
 }
 
 export class Trunk extends Group {
@@ -49,7 +65,7 @@ export class Trunk extends Group {
         this.rows = [];
         
         for (var i = 0; i < height; i++) {
-            var cube = new Cube(color)
+            var cube = new TrunkCube()
 			cube.castShadow = true;
 			cube.receiveShadow = true;
 			cube.position.y = i
@@ -65,10 +81,10 @@ export class Tree extends Group {
 
         this.rows = [];
         
-        this.trunk = new Trunk(height,0x654321);
+        this.trunk = new Trunk(height);
         this.add(this.trunk);
 
-        this.sphere = new Sphere(leaves,0x00ff00);
+        this.sphere = new Sphere(leaves);
         this.sphere.position.y = height;
 		this.add(this.sphere);
     }

@@ -9,7 +9,6 @@ import {Creeper} from './Creeper.js';
 import {Sphere, Tree} from './Sphere.js';
 
 
-
 var ANIMATION_DURATION = 4000;		//in milliseconds
 
 class World
@@ -39,6 +38,7 @@ class World
 
 		this.ocean.position.z = length;
 
+		//Tree
 		this.tree = new Tree(5,5);
 		this.scene.add(this.tree);
 		this.tree.position.z = length/2;
