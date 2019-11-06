@@ -26,32 +26,34 @@ class World
 		//Setup lights
 		this.initLights();
 
-		var length = 60;
+		var width = 40;
 		var depth = 60;
 
 		//Setup ground
-		var pivotGround = Ground.createGround(length,depth);
+		var pivotGround = Ground.createGround(width,depth);
+		pivotGround.position.y = -5;
 		this.scene.add( pivotGround );
 
 		//Setup ocean
-		this.ocean = new Ocean(length, depth);
+		this.ocean = new Ocean(width, depth/2);
 		this.scene.add(this.ocean);
 
-		this.ocean.position.z = length;
+		this.ocean.position.z = depth/2;
+		this.ocean.position.y--;
 
 		//Tree
 		this.tree = new Tree(5,5);
 		this.scene.add(this.tree);
-		this.tree.position.z = length/2;
-		this.tree.position.x = length/2;
+		this.tree.position.z = width/2;
+		this.tree.position.x = width/2;
 		
 		//Creeper
 		this.creeper = new Creeper();
 		this.scene.add(this.creeper);
-		this.creeper.position.set(length/2, 1, length/2);
+		this.creeper.position.set(width/2, 1, width/2);
 
 		//Height map
-		var heightMap = new HeightMap("textures/heightmap.png", 3);
+		var heightMap = new HeightMap("textures/heightmap.png", 10);
 		heightMap.add(pivotGround);
 		heightMap.apply();
 
