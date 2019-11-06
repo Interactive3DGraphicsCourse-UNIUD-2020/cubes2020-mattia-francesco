@@ -7,6 +7,7 @@ const MeshType = {
 	TRUNK: 1,
 	LEAVES: 2,
 	OCEAN: 3,
+	AIR: 5,
 	//inserire nuovi tipi qui
 	WIREFRAME: 4
 };
@@ -32,6 +33,7 @@ class Meshes
 		this.materials[MeshType.TRUNK] = new THREE.MeshPhongMaterial({color: 0x654321});
 		this.materials[MeshType.LEAVES] = new THREE.MeshPhongMaterial({color: 0x00ff00});
 		this.materials[MeshType.OCEAN] = new THREE.MeshPhongMaterial({color: 0x0099FF, transparent: true, opacity: 0.2});
+		this.materials[MeshType.AIR] = new THREE.MeshPhongMaterial({color: 0x0099FF, transparent: true, opacity: 0.2});
 
 		this.wireframeGeometry = new THREE.EdgesGeometry(this.geometry);
 		this.materials[MeshType.WIREFRAME] = new THREE.LineBasicMaterial({color: 0x999999, linewidth: 4});
