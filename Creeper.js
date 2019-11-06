@@ -22,7 +22,7 @@ class Creeper extends Group
 	update(amount)
 	{
 		//var angle = stepAmount*2*Math.PI;
-		var angle = amount*2*Math.PI;
+		var angle = amount*2*Math.PI*4;
 
 		var euler = new THREE.Euler(0, angle, 0, 'XYZ');
 

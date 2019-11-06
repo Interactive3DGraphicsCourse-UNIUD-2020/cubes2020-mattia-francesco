@@ -24,6 +24,7 @@ class Engine
 		this.renderer.gammaInput = true;
 		this.renderer.gammaOutput = true;
 		this.renderer.shadowMap.enabled = true;
+		this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 		
 		document.body.appendChild(this.renderer.domElement);
 
@@ -48,7 +49,7 @@ class Engine
 		//Controls
 		this.controls = new OrbitControls(this.world.camera);
 		this.controls.addEventListener("change", this.render.bind(this));
-		this.controls.target.set(20, 0, 20);
+		this.controls.target.set(0, 0, -10);
 	}
 	
 	resize()

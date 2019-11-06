@@ -56,7 +56,7 @@ export class Ocean extends Group
 
 	update(amount)
 	{
-		amount *= 2*Math.PI;
+		amount *= 2*Math.PI*8;
 
 		for(var i=0;i<WAVE_LENGTH;i++)
 		{
