@@ -12,7 +12,7 @@ class Cube extends THREE.Object3D
 		super();
 
 		this.add(meshes.getMesh(meshType));
-		this.add(meshes.getMesh(MeshType.WIREFRAME));
+		// this.add(meshes.getMesh(MeshType.WIREFRAME));
 	}
 }
 
@@ -65,4 +65,10 @@ class HomeRoofCube extends Cube
 	}
 }
 
-export {GroundCube,TrunkCube,LeavesCube, OceanCube, HomeWallCube, HomeRoofCube};
+class SolarCube extends Cube {
+	constructor() {
+		super(MeshType.SUN);
+	}
+}
+
+export {GroundCube,TrunkCube,LeavesCube, OceanCube, HomeWallCube, HomeRoofCube,SolarCube};
