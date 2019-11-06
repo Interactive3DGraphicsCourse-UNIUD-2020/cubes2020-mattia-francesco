@@ -65,13 +65,15 @@ class Walls extends Group {
         this.add(functionPivot);
         */
 
-        functionPivot = this.createWallCube(z,y);
+        functionPivot = this.createWallCube(z-2,y);
         functionPivot.position.y = y;
+        functionPivot.position.x = 1;
         functionPivot.rotation.x = 90 * Math.PI/180;
         this.add(functionPivot);
  
-        functionPivot = this.createWallCube(z,y);
+        functionPivot = this.createWallCube(z-2,y);
         functionPivot.position.y = y;
+        functionPivot.position.x = 1;
         functionPivot.position.z = x-1;
         functionPivot.rotation.x = 90 * Math.PI/180;
         this.add(functionPivot);
