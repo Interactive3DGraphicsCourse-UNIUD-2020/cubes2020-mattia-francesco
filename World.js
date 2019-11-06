@@ -7,6 +7,7 @@ import {Ocean} from './Ocean.js';
 import {Creeper} from './Creeper.js';
 
 import {Tree} from './Tree.js';
+import {Home} from './Home.js';
 import {HeightMap} from './Heightmap.js';
 
 
@@ -45,6 +46,24 @@ class World
 		this.tree.position.z = length/2;
 		this.tree.position.x = length/2;
 		
+	//Tree
+	this.tree = new Tree(5,5);
+	this.scene.add(this.tree);
+	this.tree.position.z = 17;
+	this.tree.position.x = 13;
+
+	//Home
+	this.home = new Home(5,4,3);
+	this.scene.add(this.home);
+	this.home.position.z = 2;
+	this.home.position.x = 3;
+
+		//Home
+		this.home = new Home(3,3,3);
+		this.scene.add(this.home);
+		this.home.position.z = 7;
+		this.home.position.x = 16;
+
 		//Creeper
 		this.creeper = new Creeper();
 		this.scene.add(this.creeper);
