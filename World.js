@@ -61,8 +61,6 @@ class World
 		this.planet.add(this.ocean);
 		this.planet.add( pivotGround );
 
-
-
 		//Setup earth
 		//Animations
 		this.startTime = Date.now();

@@ -55,11 +55,8 @@ class PlanetCube extends Cube
 {
 	constructor()
 	{
-		super(0x0000FF);
-
-		this.material.transparent = true;
-		this.material.opacity = 0.1;
+		super(MeshType.AIR);
 	}
 }
 
-export {Cube, OceanCube, PlanetCube};
+export {Cube,GroundCube,TrunkCube,LeavesCube, OceanCube, PlanetCube};

@@ -43,7 +43,7 @@ export class Planet extends Group {
     }
 
     createCube(width,height) {
-        var pivotGround = new THREE.Object3D()
+        var pivotGround = new Group()
         for (var x = 0; x < width; x++) {
             for (var z = 0; z < height; z++) {
                 var cube = new PlanetCube();
