@@ -6,6 +6,8 @@ import * as Ground from './Ground.js';
 import {Ocean} from './Ocean.js';
 import {Creeper} from './Creeper.js';
 
+import {HeightMap} from './Heightmap.js';
+
 import {Sphere, Tree} from './Sphere.js';
 
 
@@ -26,8 +28,8 @@ class World
 		//Setup lights
 		this.initLights();
 
-		var length = 20;
-		var depth = 20;
+		var length = 60;
+		var depth = 60;
 
 		//Setup ground
 		var pivotGround = Ground.createGround(length,depth);
@@ -48,6 +50,11 @@ class World
 		this.creeper = new Creeper();
 		this.scene.add(this.creeper);
 		this.creeper.position.set(length/2, 1, length/2);
+
+		//Height map
+		var heightMap = new HeightMap("textures/heightmap.png", 3);
+		heightMap.add(pivotGround);
+		heightMap.apply();
 
 		//Animations
 		this.startTime = Date.now();
