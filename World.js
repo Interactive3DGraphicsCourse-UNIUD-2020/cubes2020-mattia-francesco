@@ -7,8 +7,6 @@ import {Ocean} from './Ocean.js';
 import {Creeper} from './Creeper.js';
 
 import {Tree} from './Tree.js';
-import {Planet} from './Planet.js';
-import { Group } from './Group.js';
 
 
 var ANIMATION_DURATION = 4000;		//in milliseconds
@@ -30,21 +28,19 @@ class World
 		var length = 20;
 		var depth = 20;
 
-
-		this.sun = new Planet(30,30,30,);
-		this.scene.add(this.sun);
-
 		//Setup ground
 		var pivotGround = Ground.createGround(length,depth);
+		this.scene.add( pivotGround );
 
 		//Setup ocean
 		this.ocean = new Ocean(length, depth);
+		this.scene.add(this.ocean);
 
 		this.ocean.position.z = length;
 
 		//Tree
-
 		this.tree = new Tree(5,5);
+		this.scene.add(this.tree);
 		this.tree.position.z = length/2;
 		this.tree.position.x = length/2;
 		
@@ -53,15 +49,6 @@ class World
 		this.scene.add(this.creeper);
 		this.creeper.position.set(length/2, 1, length/2);
 
-		pivotPlanet = new Group();
-		this.planet = new Planet(40,20,20);
-		this.planet.position.x = 80;
-		this.scene.add(pivotPlanet);
-		this.planet.add(this.tree);
-		this.planet.add(this.ocean);
-		this.planet.add( pivotGround );
-
-		//Setup earth
 		//Animations
 		this.startTime = Date.now();
 	}
@@ -95,7 +82,6 @@ class World
 
 		this.ocean.update(amount);
 		this.creeper.update(amount);
-
 	}
 }
 

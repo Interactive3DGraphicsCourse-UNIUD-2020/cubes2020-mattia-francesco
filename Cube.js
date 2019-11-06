@@ -49,8 +49,6 @@ class OceanCube extends Cube
 	}
 }
 
-export {GroundCube, TrunkCube, LeavesCube, OceanCube};
-
 class PlanetCube extends Cube
 {
 	constructor()
@@ -59,4 +57,4 @@ class PlanetCube extends Cube
 	}
 }
 
-export {Cube,GroundCube,TrunkCube,LeavesCube, OceanCube, PlanetCube};
+export {GroundCube,TrunkCube,LeavesCube, OceanCube, PlanetCube};
