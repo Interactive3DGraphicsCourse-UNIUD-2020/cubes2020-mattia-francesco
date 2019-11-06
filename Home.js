@@ -60,8 +60,10 @@ class Walls extends Group {
 
         var functionPivot = new Group();   
 
+        /*
         functionPivot = this.createWallCube(z,x);
         this.add(functionPivot);
+        */
 
         functionPivot = this.createWallCube(z,y);
         functionPivot.position.y = y;

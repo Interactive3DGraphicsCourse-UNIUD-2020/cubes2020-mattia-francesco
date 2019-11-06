@@ -17,18 +17,18 @@ class World
 {
 	constructor()
 	{
+		var width = 40;
+		var depth = 60;
+
 		//Setup camera & scene
 		this.scene = new THREE.Scene();
 		this.camera = new THREE.PerspectiveCamera(75, Utils.getRatio(), 0.1, 1000);
 			
-		this.camera.position.set(2,2,2);
-		this.camera.lookAt(new THREE.Vector3(0,0,0));
+		this.camera.position.set(50, 15, 50);
+		//this.camera.lookAt(new THREE.Vector3(width/2, 0, depth/2));
 
 		//Setup lights
 		this.initLights();
-
-		var width = 40;
-		var depth = 60;
 
 		//Setup ground
 		var pivotGround = Ground.createGround(width,depth);
@@ -48,28 +48,47 @@ class World
 		this.tree.position.z = width/2;
 		this.tree.position.x = width/2;
 		
-	//Tree
-	this.tree = new Tree(5,5);
-	this.scene.add(this.tree);
-	this.tree.position.z = 17;
-	this.tree.position.x = 13;
+		//Tree
+		this.tree = new Tree(5,5);
+		this.scene.add(this.tree);
+		this.tree.position.z = 17;
+		this.tree.position.x = 10;
+		
+		//Tree
+		this.tree = new Tree(7,7);
+		this.scene.add(this.tree);
+		this.tree.position.z = 9;
+		this.tree.position.x = 25;
+		
+		//Tree
+		this.tree = new Tree(5,5);
+		this.scene.add(this.tree);
+		this.tree.position.z = 7;
+		this.tree.position.x = 35;
+		
+		//Tree
+		this.tree = new Tree(5,5);
+		this.scene.add(this.tree);
+		this.tree.position.z = 17;
+		this.tree.position.x = 32;
 
-	//Home
-	this.home = new Home(5,4,3);
-	this.scene.add(this.home);
-	this.home.position.z = 2;
-	this.home.position.x = 3;
+		//Home
+		this.home = new Home(3,4,5);
+		this.scene.add(this.home);
+		this.home.position.z = 0;
+		this.home.position.x = 3;
+		this.home.position.y = 5;
 
 		//Home
 		this.home = new Home(3,3,3);
 		this.scene.add(this.home);
-		this.home.position.z = 7;
-		this.home.position.x = 16;
+		this.home.position.z = 17;
+		this.home.position.x = 35;
 
 		//Creeper
 		this.creeper = new Creeper();
 		this.scene.add(this.creeper);
-		this.creeper.position.set(width/2, 1, width/2);
+		this.creeper.position.set(width/2, 0.5, width/2);
 
 		//Height map
 		var heightMap = new HeightMap("textures/heightmap.png", 10);

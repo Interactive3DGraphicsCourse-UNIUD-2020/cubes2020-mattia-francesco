@@ -48,6 +48,7 @@ class Engine
 		//Controls
 		this.controls = new OrbitControls(this.world.camera);
 		this.controls.addEventListener("change", this.render.bind(this));
+		this.controls.target.set(20, 0, 20);
 	}
 	
 	resize()
