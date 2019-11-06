@@ -8,8 +8,6 @@ export function createGround(width,height) {
 		for (var z = 0; z < height; z++) {
 	for (var x = 0; x < width; x++) {
 			var cube = new GroundCube();
-			cube.castShadow = true;
-			cube.receiveShadow = true;
 			cube.position.x = x;
 			cube.position.z = z;
 			pivotGround.add(cube);

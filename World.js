@@ -3,12 +3,13 @@ import * as THREE from './build/three.module.js';
 import * as Utils from './utils.js';
 
 import * as Ground from './Ground.js';
-import {Ocean} from './Ocean.js';
+import {Ocean, Group} from './Ocean.js';
 import {Creeper} from './Creeper.js';
 
 import {Tree} from './Tree.js';
 import {Home} from './Home.js';
 import {HeightMap} from './Heightmap.js';
+import { SolarCube } from './Cube.js';
 
 
 var ANIMATION_DURATION = 4000;		//in milliseconds
@@ -29,6 +30,20 @@ class World
 
 		//Setup lights
 		this.initLights();
+
+		this.pivotSun = new Group();
+		this.pivotSun.rotation.y = -30*Math.PI/180;
+		this.pivotSun.position.x = 20;
+		//Sun
+		var sun = new SolarCube();
+		sun.position.y = 25;
+		sun.position.z = 20;
+		sun.position.x = 40;
+		sun.rotation.x = -20*Math.PI/180;
+		sun.scale.set(7,7,7);
+
+		this.scene.add(this.pivotSun);
+		this.pivotSun.add(sun);
 
 		//Setup ground
 		var pivotGround = Ground.createGround(width,depth);
@@ -125,7 +140,7 @@ class World
 	{
 		var currentSecond = (Date.now()-this.startTime)%ANIMATION_DURATION;
 		var amount = currentSecond/ANIMATION_DURATION;
-
+		this.pivotSun.rotation.z += 0.02;
 		this.ocean.update(amount);
 		this.creeper.update(amount);
 	}
