@@ -49,12 +49,20 @@ class OceanCube extends Cube
 	}
 }
 
-class PlanetCube extends Cube
+class HomeWallCube extends Cube
 {
 	constructor()
 	{
-		super(MeshType.AIR);
+		super(MeshType.Wall);
 	}
 }
 
-export {GroundCube,TrunkCube,LeavesCube, OceanCube, PlanetCube};
+class HomeRoofCube extends Cube
+{
+	constructor()
+	{
+		super(MeshType.Roof);
+	}
+}
+
+export {GroundCube,TrunkCube,LeavesCube, OceanCube, HomeWallCube, HomeRoofCube};
