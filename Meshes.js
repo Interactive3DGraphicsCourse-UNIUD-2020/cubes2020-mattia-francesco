@@ -19,11 +19,12 @@ class Meshes
 {
 	constructor(colors)//(texturePath)
 	{
-		var dirtTexture = THREE.ImageUtils.loadTexture("textures/sand.png");
-		var trunkTexture = THREE.ImageUtils.loadTexture("textures/log.png");
-		var leavesTexture = THREE.ImageUtils.loadTexture("textures/leaves.png");
-		var bricksTexture = THREE.ImageUtils.loadTexture("textures/bricks.png");
-		var stoneTexture = THREE.ImageUtils.loadTexture("textures/stone.png");
+		var textureLoader = new THREE.TextureLoader();
+		var dirtTexture = textureLoader.load("textures/sand.png");
+		var trunkTexture = textureLoader.load("textures/log.png");
+		var leavesTexture = textureLoader.load("textures/leaves.png");
+		var bricksTexture = textureLoader.load("textures/bricks.png");
+		var stoneTexture = textureLoader.load("textures/stone.png");
 
 		//this.geometry = new THREE.BoxGeometry(SIDE_SIZE, SIDE_SIZE, SIDE_SIZE);
 		this.geometry = new THREE.BoxBufferGeometry(SIDE_SIZE, SIDE_SIZE, SIDE_SIZE);
@@ -52,8 +53,12 @@ class Meshes
 		else
 			mesh = new THREE.Mesh(this.geometry, this.materials[meshType]);
 		
-		mesh.castShadow = true;
-		mesh.receiveShadow = true;
+		if(meshType != MeshType.SUN)
+		{
+			mesh.castShadow = true;
+			mesh.receiveShadow = true;
+		}
+		
 		return mesh;
 	}
 }

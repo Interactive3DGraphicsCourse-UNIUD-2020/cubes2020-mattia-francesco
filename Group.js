@@ -5,6 +5,11 @@ class Group extends THREE.Object3D
 	constructor()
 	{
 		super();
+
+		
+		super.castShadow = true;
+		super.receiveShadow = true;
+
 	}
 }
 
