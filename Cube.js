@@ -24,6 +24,7 @@ class GroundCube extends Cube
 	}
 }
 
+
 class TrunkCube extends Cube
 {
 	constructor()
@@ -49,3 +50,16 @@ class OceanCube extends Cube
 }
 
 export {GroundCube, TrunkCube, LeavesCube, OceanCube};
+
+class PlanetCube extends Cube
+{
+	constructor()
+	{
+		super(0x0000FF);
+
+		this.material.transparent = true;
+		this.material.opacity = 0.1;
+	}
+}
+
+export {Cube, OceanCube, PlanetCube};

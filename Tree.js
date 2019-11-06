@@ -4,9 +4,6 @@ import {Group} from './Group.js';
 import {TrunkCube, LeavesCube} from './Cube.js';
 import * as Ground from './Ground.js';
 
-var WAVE_LENGTH = 8;
-var WAVE_HEIGHT = 1/4;
-
 export class Sphere extends Group
 {
 	constructor(diameter,color)
