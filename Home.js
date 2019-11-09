@@ -1,5 +1,5 @@
 import {Group} from './Group.js';
-import { HomeWallCube ,HomeRoofCube} from './Cube.js';
+import * as Square from './Square.js';
 
 export class Home extends Group {
     constructor(x,y,z)
@@ -25,7 +25,7 @@ class Roof extends Group {
         var centerXPivot = 0;
         var centerZPivot = 0;
         while (x >= 1 && z >=1) {
-            functionPivot = this.createRoofCubes(z,x);
+            functionPivot = Square.createRoofCubes(z,x);
             this.add(functionPivot);
             functionPivot.position.y = heightRoof;
             functionPivot.position.x = centerXPivot;
@@ -37,18 +37,6 @@ class Roof extends Group {
             centerXPivot++;
         }
     }
-    createRoofCubes(width,depth) {
-        var pivotGround = new Group()
-        for (var x = 0; x < width; x++) {
-            for (var z = 0; z < depth; z++) {
-                var cube = new HomeRoofCube();
-                cube.position.x = x;
-                cube.position.z = z;
-                pivotGround.add(cube);
-            }
-        }
-        return pivotGround	
-    }
 }
 
 class Walls extends Group {
@@ -58,26 +46,26 @@ class Walls extends Group {
 
         var functionPivot = new Group();   
 
-        functionPivot = this.createWallCubes(z-2,y);
+        functionPivot = Square.createWallCubes(z-2,y);
         functionPivot.position.y = y;
         functionPivot.position.x = 1;
         functionPivot.rotation.x = 90 * Math.PI/180;
         this.add(functionPivot);
  
-        functionPivot = this.createWallCubes(z-2,y);
+        functionPivot = Square.createWallCubes(z-2,y);
         functionPivot.position.y = y;
         functionPivot.position.x = 1;
         functionPivot.position.z = x-1;
         functionPivot.rotation.x = 90 * Math.PI/180;
         this.add(functionPivot);
 
-        functionPivot = this.createWallCubes(x,y);
+        functionPivot = Square.createWallCubes(x,y);
         functionPivot.position.y = y;
         functionPivot.rotation.x = 90 * Math.PI/180;
         functionPivot.rotation.z = 90 * Math.PI/180;
         this.add(functionPivot);
 
-        functionPivot = this.createWallCubes(x,y);
+        functionPivot = Square.createWallCubes(x,y);
         functionPivot.position.y = y;
         functionPivot.position.x = z-1; 
         functionPivot.rotation.x = 90 * Math.PI/180;
@@ -85,16 +73,5 @@ class Walls extends Group {
         this.add(functionPivot);
     }
 
-    createWallCubes(width,depth) {
-        var pivotGround = new Group()
-        for (var x = 0; x < width; x++) {
-            for (var z = 0; z < depth; z++) {
-                var cube = new HomeWallCube();
-                cube.position.x = x;
-                cube.position.z = z;
-                pivotGround.add(cube);
-            }
-        }
-        return pivotGround	
-    }
+
 }

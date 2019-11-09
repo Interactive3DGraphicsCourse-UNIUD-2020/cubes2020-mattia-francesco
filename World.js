@@ -2,7 +2,7 @@ import * as THREE from './build/three.module.js';
 
 import * as Utils from './utils.js';
 
-import * as Ground from './Ground.js';
+import * as Square from './Square.js';
 import {Ocean, Group} from './Ocean.js';
 import {Creeper} from './Creeper.js';
 
@@ -53,7 +53,7 @@ class World
 		this.initLights();
 
 		//Setup ground
-		var pivotGround = Ground.createGround(width,depth);
+		var pivotGround = Square.createGround(width,depth);
 		pivotGround.position.y = -5;
 		this.sceneGroup.add( pivotGround );
 

@@ -1,7 +1,6 @@
-import * as THREE from './build/three.module.js';
-
+import * as Square from './Square.js';
 import {Group} from './Group.js';
-import {TrunkCube, LeavesCube} from './Cube.js';
+import {TrunkCube} from './Cube.js';
 
 class Sphere extends Group
 {
@@ -15,7 +14,7 @@ class Sphere extends Group
         var heightPivot = 0;
         var centerPivot = 0;
         for (var height=1;height<=diameter;height+=2) {
-            functionPivot = this.createLeavesCubes(height,height,color);
+            functionPivot = Square.createLeavesCubes(height,height,color);
             this.add(functionPivot);
             functionPivot.position.y = heightPivot;
             functionPivot.position.z = -centerPivot;
@@ -27,7 +26,7 @@ class Sphere extends Group
 
         for (var height = diameter - 2; height >= 1; height-=2) {
             centerPivot--;
-            functionPivot = this.createLeavesCubes(height,height,color);
+            functionPivot = Square.createLeavesCubes(height,height,color);
             this.add(functionPivot);
             functionPivot.position.y = heightPivot;
             functionPivot.position.z = -centerPivot;
@@ -35,26 +34,10 @@ class Sphere extends Group
             heightPivot++;
         }
 	}
-
-    createLeavesCubes(width,depth)
-    {
-        var pivot = new THREE.Object3D()
-        for (var x = 0; x < width; x++) {
-            for (var z = 0; z < depth; z++) {
-                var cube = new LeavesCube();
-                cube.castShadow = true;
-                cube.receiveShadow = true;
-                cube.position.x = x;
-                cube.position.z = z;
-                pivot.add(cube);
-            }
-        }
-        return pivot  
-    }
 }
 
 class Trunk extends Group {
-    constructor(height,color)
+    constructor(height)
 	{
 		super();
 
