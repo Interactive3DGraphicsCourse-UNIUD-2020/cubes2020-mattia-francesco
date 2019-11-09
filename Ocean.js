@@ -1,6 +1,3 @@
-import * as THREE from './build/three.module.js';
-import {BufferGeometryUtils} from './jsm/utils/BufferGeometryUtils.js'
-
 import {Group} from './Group.js';
 import {OceanCube} from './Cube.js';
 
@@ -34,23 +31,7 @@ export class Ocean extends Group
 
 				cube.position.x = x;
 
-				/*
-				cube.traverse((object) =>
-				{
-					if(object.isMesh)
-					{
-						object.geometry.translate(x, 0, z);
-						geometries.push(object.geometry);
-					}
-				});
-				*/
 			}
-			
-			/*
-			var mergedGeometry = BufferGeometryUtils.mergeBufferGeometries(geometries);
-			var mergedMesh = new THREE.Mesh(mergedGeometry, new THREE.MeshPhongMaterial({color: 0x0099FF, transparent: true, opacity: 0.2}));
-			super.add(mergedMesh);
-			*/
 		}
 	}
 

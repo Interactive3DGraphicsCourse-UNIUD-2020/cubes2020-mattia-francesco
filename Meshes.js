@@ -7,17 +7,17 @@ const MeshType = {
 	TRUNK: 1,
 	LEAVES: 2,
 	OCEAN: 3,
-	Wall: 4,
-	Roof: 5,
+	WALL: 4,
+	ROOF: 5,
 	SUN: 6,
-	//inserire nuovi tipi qui
 	WIREFRAME: 7
 };
 const MESH_TYPES_NUMBER = MeshType.WIREFRAME+1;
 
+//Define Meshes based MeshType selected
 class Meshes
 {
-	constructor(colors)//(texturePath)
+	constructor()
 	{
 		var textureLoader = new THREE.TextureLoader();
 		var dirtTexture = textureLoader.load("textures/sand.png");
@@ -26,7 +26,6 @@ class Meshes
 		var bricksTexture = textureLoader.load("textures/bricks.png");
 		var stoneTexture = textureLoader.load("textures/stone.png");
 
-		//this.geometry = new THREE.BoxGeometry(SIDE_SIZE, SIDE_SIZE, SIDE_SIZE);
 		this.geometry = new THREE.BoxBufferGeometry(SIDE_SIZE, SIDE_SIZE, SIDE_SIZE);
 		this.materials = new Array(MESH_TYPES_NUMBER);
 
@@ -34,8 +33,8 @@ class Meshes
 		this.materials[MeshType.TRUNK] = new THREE.MeshPhongMaterial({map: trunkTexture /*color: 0x654321*/});
 		this.materials[MeshType.LEAVES] = new THREE.MeshPhongMaterial({map: leavesTexture /*color: 0x00ff00*/});
 		this.materials[MeshType.OCEAN] = new THREE.MeshPhongMaterial({color: 0x0099FF, transparent: true, opacity: 0.2});
-		this.materials[MeshType.Wall] = new THREE.MeshPhongMaterial({map: stoneTexture /*color: 0xc2c5cc*/});
-		this.materials[MeshType.Roof] = new THREE.MeshPhongMaterial({map: bricksTexture /*color: 0xcb4154*/});
+		this.materials[MeshType.WALL] = new THREE.MeshPhongMaterial({map: stoneTexture /*color: 0xc2c5cc*/});
+		this.materials[MeshType.ROOF] = new THREE.MeshPhongMaterial({map: bricksTexture /*color: 0xcb4154*/});
 		this.materials[MeshType.SUN] = new THREE.MeshPhongMaterial({color: 0xf9d71c});
 
 		this.wireframeGeometry = new THREE.EdgesGeometry(this.geometry);
@@ -44,6 +43,10 @@ class Meshes
 		this.wireframeGeometry.scale(1.01, 1.01, 1.01)
 	}
 
+	/*
+		Input: the material
+		Output: mesh
+	*/
 	getMesh(meshType)
 	{
 		var mesh;
@@ -53,6 +56,7 @@ class Meshes
 		else
 			mesh = new THREE.Mesh(this.geometry, this.materials[meshType]);
 		
+		//All objects have shadow except the sun, he is the light
 		if(meshType != MeshType.SUN)
 		{
 			mesh.castShadow = true;

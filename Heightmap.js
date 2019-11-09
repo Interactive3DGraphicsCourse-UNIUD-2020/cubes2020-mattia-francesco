@@ -1,11 +1,5 @@
 import * as THREE from './build/three.module.js';
 
-import {Group} from './Group.js';
-import {OceanCube} from './Cube.js';
-
-var WAVE_LENGTH = 8;
-var WAVE_HEIGHT = 1/4;
-
 //http://danni-three.blogspot.it/2013/09/threejs-heightmaps.html
 class HeightMap
 {

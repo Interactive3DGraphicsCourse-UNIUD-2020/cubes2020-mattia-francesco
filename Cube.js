@@ -4,15 +4,16 @@ import {Meshes, MeshType} from './Meshes.js';
 
 
 var meshes = new Meshes();
-
+/*
+	Input: 
+	Output: Create a 1 x 1 x 1 Cube with a material defined by the selected cube's extension
+*/
 class Cube extends THREE.Object3D
 {
 	constructor(meshType)//(texturePath)
 	{
 		super();
-
 		this.add(meshes.getMesh(meshType));
-		// this.add(meshes.getMesh(MeshType.WIREFRAME));
 	}
 }
 
@@ -53,7 +54,7 @@ class HomeWallCube extends Cube
 {
 	constructor()
 	{
-		super(MeshType.Wall);
+		super(MeshType.WALL);
 	}
 }
 
@@ -61,7 +62,7 @@ class HomeRoofCube extends Cube
 {
 	constructor()
 	{
-		super(MeshType.Roof);
+		super(MeshType.ROOF);
 	}
 }
 

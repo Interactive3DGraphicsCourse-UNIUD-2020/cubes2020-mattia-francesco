@@ -2,9 +2,8 @@ import * as THREE from './build/three.module.js';
 
 import {Group} from './Group.js';
 import {TrunkCube, LeavesCube} from './Cube.js';
-import * as Ground from './Ground.js';
 
-export class Sphere extends Group
+class Sphere extends Group
 {
 	constructor(diameter,color)
 	{
@@ -16,7 +15,7 @@ export class Sphere extends Group
         var heightPivot = 0;
         var centerPivot = 0;
         for (var height=1;height<=diameter;height+=2) {
-            functionPivot = this.createCube(height,height,color);
+            functionPivot = this.createLeavesCubes(height,height,color);
             this.add(functionPivot);
             functionPivot.position.y = heightPivot;
             functionPivot.position.z = -centerPivot;
@@ -28,7 +27,7 @@ export class Sphere extends Group
 
         for (var height = diameter - 2; height >= 1; height-=2) {
             centerPivot--;
-            functionPivot = this.createCube(height,height,color);
+            functionPivot = this.createLeavesCubes(height,height,color);
             this.add(functionPivot);
             functionPivot.position.y = heightPivot;
             functionPivot.position.z = -centerPivot;
@@ -37,11 +36,11 @@ export class Sphere extends Group
         }
 	}
 
-    createCube(width,height)
+    createLeavesCubes(width,depth)
     {
         var pivot = new THREE.Object3D()
         for (var x = 0; x < width; x++) {
-            for (var z = 0; z < height; z++) {
+            for (var z = 0; z < depth; z++) {
                 var cube = new LeavesCube();
                 cube.castShadow = true;
                 cube.receiveShadow = true;
@@ -54,7 +53,7 @@ export class Sphere extends Group
     }
 }
 
-export class Trunk extends Group {
+class Trunk extends Group {
     constructor(height,color)
 	{
 		super();
@@ -71,6 +70,7 @@ export class Trunk extends Group {
     }
 }
 
+//Create a Tree with a trunk and leaves
 export class Tree extends Group {
     constructor(height,leaves)
 	{
