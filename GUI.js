@@ -2,17 +2,20 @@ import * as THREE from './build/three.module.js';
 
 import * as dat from './jsm/libs/dat.gui.module.js';
 
-class GUI
+class GUI extends dat.GUI
 {
 	constructor(sun, ocean, creeper)
 	{
-		var gui = new dat.GUI();
+		super();
 
-		var options = gui.addFolder('Animations speed');
-		options.add(sun.speed, 'Sun', 0, 10).listen();
-		options.add(ocean.speed, 'Ocean', 0, 10).listen();
-		options.add(creeper.speed, 'Creeper', 0, 10).listen();
-		options.open();
+		this.options = this.addFolder('Animations');
+
+		this.options.open();
+	}
+
+	add(object, name)
+	{
+		this.options.add(object, 'speed', 0, 20).name(name+" speed").listen();
 	}
 }
 

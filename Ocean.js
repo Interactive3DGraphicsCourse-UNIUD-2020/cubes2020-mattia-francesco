@@ -4,7 +4,7 @@ import {OceanCube} from './Cube.js';
 var WAVE_LENGTH = 8;
 var WAVE_HEIGHT = 1/4;
 
-export class Ocean extends Group
+class Ocean extends Group
 {
 	constructor(width, depth)
 	{
@@ -51,4 +51,4 @@ export class Ocean extends Group
 	}
 }
 
-export {Group};
+export {Ocean};
