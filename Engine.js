@@ -7,7 +7,7 @@ import {World} from './World.js';
 
 class Engine
 {
-	constructor(world)
+	constructor()
 	{
 		this.world = new World();
 
