@@ -11,6 +11,8 @@ import {Home} from './Home.js';
 import {HeightMap} from './Heightmap.js';
 import { SolarCube } from './Cube.js';
 
+import {GUI} from './GUI.js'
+
 var width = 40;		//scene width
 var depth = 60;		//scene depth
 
@@ -38,6 +40,7 @@ class World
 
 		this.pivotSun = new Group();
 		this.pivotSun.add(sun);
+		this.pivotSun.speed = 1;
 
 		this.pivotSun.position.x = width/2;
 		this.pivotSun.position.z = depth/2;
@@ -112,6 +115,10 @@ class World
 		this.sceneGroup.add(this.creeper);
 		this.creeper.position.set(width/2, 0.5, width/2);
 
+		//GUI
+		this.gui = new GUI(this.sun, this.ocean, this.creeper);
+		this.scene.add(this.gui);
+
 		//Height map
 		var heightMap = new HeightMap("textures/heightmap.png", 10);
 		heightMap.add(pivotGround);
@@ -126,10 +133,6 @@ class World
 	*/
 	initLights()
 	{
-		dirLight.castShadow = true;
-		dirLight.shadow.mapSize.width = 1024;
-		dirLight.shadow.mapSize.height = 1024;
-
 		//SunLight
 		var sunLight = new THREE.DirectionalLight(0xFFFFFF, 0.5);
 		sunLight.castShadow = true;
@@ -149,9 +152,9 @@ class World
 	{
 		var currentSecond = (Date.now()-this.startTime);
 		var amount = currentSecond/ANIMATION_DURATION;
-		var rotation = 2*Math.PI*amount;
 
 		//Animation
+		var rotation = 2*Math.PI*amount*this.pivotSun.speed;
 		this.pivotSun.rotation.set(rotation/2, 0, 0);
 		this.ocean.update(amount);
 		this.creeper.update(amount);

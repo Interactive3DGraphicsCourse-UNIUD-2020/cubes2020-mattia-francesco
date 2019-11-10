@@ -10,6 +10,8 @@ export class Ocean extends Group
 	{
 		super();
 
+		this.speed = 2;
+
 		this.rows = [];
 
 		for(var z=0;z<depth;z++)
@@ -37,7 +39,7 @@ export class Ocean extends Group
 
 	update(amount)
 	{
-		amount *= 2*Math.PI*8;
+		amount *= this.speed*Math.PI*8;
 
 		for(var i=0;i<WAVE_LENGTH;i++)
 		{
