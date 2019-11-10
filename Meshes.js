@@ -57,7 +57,7 @@ class Meshes
 			mesh = new THREE.Mesh(this.geometry, this.materials[meshType]);
 		
 		//All objects have shadow except the sun, he is the light
-		if(meshType != MeshType.SUN)
+		if(meshType != MeshType.SUN && meshType != MeshType.OCEAN)
 		{
 			mesh.castShadow = true;
 			mesh.receiveShadow = true;

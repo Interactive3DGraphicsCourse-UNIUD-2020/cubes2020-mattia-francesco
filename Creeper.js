@@ -10,8 +10,14 @@ class Creeper extends Group
 	{
 		super();
 
-		Model.load("minecraft_-_creeper/scene.gltf", 2, (creeper) => {
-			creeper.position.x = 4;
+		this.speed = 4;
+
+		Model.load("creeper/scene.gltf", 2, (creeper) =>
+		{
+			//moving the creeper from the center to make it rotate around origin
+			creeper.position.x = 4
+
+			//orientate the creeper
 			creeper.rotateZ(Math.PI);
 
 			super.add(creeper);
@@ -21,9 +27,9 @@ class Creeper extends Group
 
 	update(amount)
 	{
-		var angle = amount*2*Math.PI*4;
-		var euler = new THREE.Euler(0, angle, 0, 'XYZ');
-		this.setRotationFromEuler(euler);
+		var angle = 2*Math.PI*amount*this.speed;
+
+		this.rotation.y = angle;
 	}
 }
 

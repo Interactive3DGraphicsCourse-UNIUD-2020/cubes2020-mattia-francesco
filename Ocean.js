@@ -4,11 +4,13 @@ import {OceanCube} from './Cube.js';
 var WAVE_LENGTH = 8;
 var WAVE_HEIGHT = 1/4;
 
-export class Ocean extends Group
+class Ocean extends Group
 {
 	constructor(width, depth)
 	{
 		super();
+
+		this.speed = 2;
 
 		this.rows = [];
 
@@ -37,7 +39,7 @@ export class Ocean extends Group
 
 	update(amount)
 	{
-		amount *= 2*Math.PI*8;
+		amount *= this.speed*Math.PI*8;
 
 		for(var i=0;i<WAVE_LENGTH;i++)
 		{
@@ -49,4 +51,4 @@ export class Ocean extends Group
 	}
 }
 
-export {Group};
+export {Ocean};

@@ -3,13 +3,19 @@ import * as THREE from './build/three.module.js';
 import * as Utils from './utils.js';
 
 import * as Square from './Square.js';
-import {Ocean, Group} from './Ocean.js';
+
+import {Group} from './Group.js';
+
+import {Sun} from './Sun.js';
+import {Ocean} from './Ocean.js';
 import {Creeper} from './Creeper.js';
 
 import {Tree} from './Tree.js';
 import {Home} from './Home.js';
+
 import {HeightMap} from './Heightmap.js';
-import { SolarCube } from './Cube.js';
+
+import {GUI} from './GUI.js'
 
 var width = 40;		//scene width
 var depth = 60;		//scene depth
@@ -32,22 +38,8 @@ class World
 		this.camera.position.set(25, 15, 25);
 
 		//Sun
-		var sun = new SolarCube();
-		sun.scale.set(7,7,7);
-		sun.position.y = 50;
-
-		this.pivotSun = new Group();
-		this.pivotSun.add(sun);
-
-		this.pivotSun.position.x = width/2;
-		this.pivotSun.position.z = depth/2;
-
-		this.pivotSun2 = new Group();
-		this.pivotSun2.add(this.pivotSun);
-
-		this.pivotSun2.rotateY(25 * Math.PI / 180);
-
-		this.sceneGroup.add(this.pivotSun2);
+		this.sun = new Sun();
+		this.scene.add(this.sun);
 
 		//Setup lights
 		this.initLights();
@@ -112,6 +104,12 @@ class World
 		this.sceneGroup.add(this.creeper);
 		this.creeper.position.set(width/2, 0.5, width/2);
 
+		//GUI
+		this.gui = new GUI();
+		this.gui.add(this.sun, "Sun");
+		this.gui.add(this.ocean, "Ocean");
+		this.gui.add(this.creeper, "Creeper");
+
 		//Height map
 		var heightMap = new HeightMap("textures/heightmap.png", 10);
 		heightMap.add(pivotGround);
@@ -126,10 +124,6 @@ class World
 	*/
 	initLights()
 	{
-		dirLight.castShadow = true;
-		dirLight.shadow.mapSize.width = 1024;
-		dirLight.shadow.mapSize.height = 1024;
-
 		//SunLight
 		var sunLight = new THREE.DirectionalLight(0xFFFFFF, 0.5);
 		sunLight.castShadow = true;
@@ -138,7 +132,7 @@ class World
 		sunLight.shadow.camera.left = sunLight.shadow.camera.bottom = -50;
 		sunLight.shadow.camera.right = sunLight.shadow.camera.top = 50;
 
-		this.pivotSun.add(sunLight);
+		this.sun.add(sunLight);
 
 		//AmbientLight
 		var ambientLight = new THREE.AmbientLight(0x999999)
@@ -149,10 +143,9 @@ class World
 	{
 		var currentSecond = (Date.now()-this.startTime);
 		var amount = currentSecond/ANIMATION_DURATION;
-		var rotation = 2*Math.PI*amount;
 
 		//Animation
-		this.pivotSun.rotation.set(rotation/2, 0, 0);
+		this.sun.update(amount);
 		this.ocean.update(amount);
 		this.creeper.update(amount);
 	}

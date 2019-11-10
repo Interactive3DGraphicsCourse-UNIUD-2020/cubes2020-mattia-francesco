@@ -66,8 +66,10 @@ class HomeRoofCube extends Cube
 	}
 }
 
-class SolarCube extends Cube {
-	constructor() {
+class SolarCube extends Cube
+{
+	constructor()
+	{
 		super(MeshType.SUN);
 	}
 }

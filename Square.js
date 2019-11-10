@@ -1,57 +1,46 @@
-import {Group} from './Group.js'
-import { GroundCube,HomeWallCube,HomeRoofCube,LeavesCube } from './Cube.js';
+import {Group} from './Group.js';
 
-export function createGround(width,depth) {
-	var pivotGround = new Group()
-		for (var z = 0; z < depth; z++) {
-	for (var x = 0; x < width; x++) {
-			var cube = new GroundCube();
+import {GroundCube, HomeWallCube, HomeRoofCube, LeavesCube} from './Cube.js';
+
+function createCube(width, depth, allocFunction)
+{
+	var pivot = new Group();
+
+	for (var z = 0; z < depth; z++)
+	{
+		for (var x = 0; x < width; x++)
+		{
+			var cube = allocFunction();
+
 			cube.position.x = x;
 			cube.position.z = z;
-			pivotGround.add(cube);
+
+			pivot.add(cube);
 		}
 	}
-	return pivotGround	
+
+	return pivot;
 }
 
-export function createWallCubes(width,depth) {
-	var pivotGround = new Group()
-	for (var x = 0; x < width; x++) {
-		for (var z = 0; z < depth; z++) {
-			var cube = new HomeWallCube();
-			cube.position.x = x;
-			cube.position.z = z;
-			pivotGround.add(cube);
-		}
-	}
-	return pivotGround	
+
+function createGround(width,depth)
+{
+	return createCube(width, depth, () => { return new GroundCube(); });
 }
 
-export function createRoofCubes(width,depth) {
-	var pivotGround = new Group()
-	for (var x = 0; x < width; x++) {
-		for (var z = 0; z < depth; z++) {
-			var cube = new HomeRoofCube();
-			cube.position.x = x;
-			cube.position.z = z;
-			pivotGround.add(cube);
-		}
-	}
-	return pivotGround	
+function createWallCubes(width,depth)
+{
+	return createCube(width, depth, () => { return new HomeWallCube(); });
 }
 
-export function createLeavesCubes(width,depth)
-    {
-        var pivot = new Group()
-        for (var x = 0; x < width; x++) {
-            for (var z = 0; z < depth; z++) {
-                var cube = new LeavesCube();
-                cube.castShadow = true;
-                cube.receiveShadow = true;
-                cube.position.x = x;
-                cube.position.z = z;
-                pivot.add(cube);
-            }
-        }
-        return pivot  
-    }
+function createRoofCubes(width,depth)
+{
+	return createCube(width, depth, () => { return new HomeRoofCube(); });
+}
+
+function createLeavesCubes(width,depth)
+{
+	return createCube(width, depth, () => { return new LeavesCube(); });
+}
+
+export {createGround, createWallCubes, createRoofCubes, createLeavesCubes};
